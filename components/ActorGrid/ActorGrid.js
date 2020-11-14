@@ -14,16 +14,18 @@ class ActorGrid extends React.Component {
 
         if (!actors) return null
 
-        return (
-            <VStack spacing={8} css={{ marginTop: '50px', width: '100%', paddingLeft: '30px', paddingRight: '30px' }}>
-                { actors.map((actor, i) => <ActorCard key={i} actor={actor} />) }
-            </VStack>
-        )
+        const cssProps = {
+            marginTop: '50px',
+            marginBottom: '50px',
+            width: '100%',
+            paddingLeft: '30px',
+            paddingRight: '30px',
+        }
 
         return (
-            <SimpleGrid spacing={10} columns={{sm: 2, md: 3}} css={{ marginTop: '50px' }}>
-                { actors.map((actor, i) => <ActorCard key={i} actor={actor} />) }
-            </SimpleGrid>
+            <VStack spacing={8} css={cssProps}>
+                { actors.map(actor => <ActorCard key={actor.id} actor={actor} />) }
+            </VStack>
         )
     }
 }

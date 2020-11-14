@@ -16,9 +16,10 @@ class ActorCard extends React.Component {
 
         return (
             <Box w="100%" borderWidth="1px" borderRadius="lg" p={4}>
-                <Heading css={{ marginBottom: '20px' }}>{ actor.name }</Heading>
-                <HStack spacing={4} justify="space-between">
-                    { movies.map((movie, i) => <MovieCard key={i} movie={movie} />) }
+                <Heading>{ actor.name }</Heading>
+
+                <HStack spacing={4} justify="space-between" css={{ marginTop: '20px'}}>
+                    { movies.map(movie => <MovieCard key={movie.id} movie={movie} />) }
                 </HStack>
             </Box>
         );
