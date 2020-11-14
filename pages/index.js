@@ -68,7 +68,7 @@ class Home extends React.Component {
                 </main>
 
                 <footer className={styles.footer}>
-                    <a href="https://github.com/rafiazman"
+                    <a href="https://github.com/rafiazman/they-starred-in"
                         target="_blank"
                         rel="noopener noreferrer">
                         Developed by Rafi Azman

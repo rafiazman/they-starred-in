@@ -10,6 +10,7 @@ import {
     AccordionPanel,
     AccordionIcon,
 } from "@chakra-ui/react"
+import { SimpleGrid } from "@chakra-ui/react"
 import MovieCard from "./MovieCard/MovieCard"
 
 class ActorCard extends React.Component {
@@ -32,10 +33,10 @@ class ActorCard extends React.Component {
                     <AccordionIcon />
                 </AccordionButton>
 
-                <AccordionPanel pb={4}>
-                    <HStack spacing={4} justify="space-between" css={{ marginTop: '20px'}}>
+                <AccordionPanel mb={4}>
+                    <SimpleGrid columns={5} spacing={4} css={{ marginTop: '20px'}}>
                         { movies.map(movie => <MovieCard key={movie.id} movie={movie} />) }
-                    </HStack>
+                    </SimpleGrid>
                 </AccordionPanel>
             </AccordionItem>
         );
