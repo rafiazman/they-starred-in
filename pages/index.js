@@ -40,7 +40,7 @@ class Home extends React.Component {
     }
 
     render() {
-        const { isFilled, isLoading, queryResponse } = this.state;
+        const { isFilled, isLoading, queryResponse, query } = this.state;
         const circularProgressCss = {
             position: 'fixed',
             top: '50%',
@@ -51,7 +51,7 @@ class Home extends React.Component {
         return (
             <div className={styles.container}>
                 <Head>
-                    <title>Create Next App</title>
+                    <title>{query ? query : "They"} Starred In</title>
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
