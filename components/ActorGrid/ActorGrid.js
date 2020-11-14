@@ -3,6 +3,13 @@ import React from 'react'
 import ActorCard from "./ActorCard/ActorCard";
 import { SimpleGrid } from "@chakra-ui/react"
 import { Stack, HStack, VStack } from "@chakra-ui/react"
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+} from "@chakra-ui/react"
 
 class ActorGrid extends React.Component {
     constructor(props) {
@@ -23,9 +30,9 @@ class ActorGrid extends React.Component {
         }
 
         return (
-            <VStack spacing={8} css={cssProps}>
+            <Accordion allowToggle defaultIndex={0} css={{ width: '100%', padding: '60px 100px' }}>
                 { actors.map(actor => <ActorCard key={actor.id} actor={actor} />) }
-            </VStack>
+            </Accordion>
         )
     }
 }

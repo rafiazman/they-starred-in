@@ -3,7 +3,14 @@ import React from 'react'
 import { Box } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react"
 import { Stack, HStack, VStack } from "@chakra-ui/react"
-import MovieCard from "./MovieCard/MovieCard";
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+} from "@chakra-ui/react"
+import MovieCard from "./MovieCard/MovieCard"
 
 class ActorCard extends React.Component {
     constructor(props) {
@@ -14,14 +21,23 @@ class ActorCard extends React.Component {
         const { actor } = this.props
         const movies = actor.known_for
 
-        return (
-            <Box w="100%" borderWidth="1px" borderRadius="lg" p={4}>
-                <Heading>{ actor.name }</Heading>
+        if (movies.length === 0) return null
 
-                <HStack spacing={4} justify="space-between" css={{ marginTop: '20px'}}>
-                    { movies.map(movie => <MovieCard key={movie.id} movie={movie} />) }
-                </HStack>
-            </Box>
+        return (
+            <AccordionItem>
+                <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                        <Heading>{ actor.name }</Heading>
+                    </Box>
+                    <AccordionIcon />
+                </AccordionButton>
+
+                <AccordionPanel pb={4}>
+                    <HStack spacing={4} justify="space-between" css={{ marginTop: '20px'}}>
+                        { movies.map(movie => <MovieCard key={movie.id} movie={movie} />) }
+                    </HStack>
+                </AccordionPanel>
+            </AccordionItem>
         );
     }
 }
