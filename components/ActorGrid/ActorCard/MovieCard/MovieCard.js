@@ -18,7 +18,7 @@ class MovieCard extends React.Component {
         // const year = media_type === 'tv' ? first_air_date.substring(0,4) : release_date.substring(0, 4)
 
         const name = original_title
-        const year = release_date ? `${release_date.substring(0, 4)}` : ''
+        const year = release_date ? `(${release_date.substring(0, 4)})` : ''
 
         const headingCss = {
             overflow: 'hidden',
@@ -30,7 +30,7 @@ class MovieCard extends React.Component {
             <div className={className} style={{ width: '300px' }}>
                 { poster_path ? <Image src={posterImage} width={300} height={450}></Image> : <Image src="/missing-poster.png" width={300} height={450}></Image> }
 
-                <Heading size="md" css={headingCss}>{name} {`(${year})`}</Heading>
+                <Heading size="md" css={headingCss}>{name} {year}</Heading>
             </div>
         )
     }
