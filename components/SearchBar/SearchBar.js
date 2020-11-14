@@ -3,14 +3,33 @@ import React from 'react'
 import { Input } from "@chakra-ui/react"
 
 import styles from './SearchBar.module.scss'
+import randomActors from './random-actors.json'
 
 class SearchBar extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            currentPlaceholderId: 0,
+        }
     }
+
+    componentDidMount() {
+        this.timeout = setInterval(() => {
+            this.setState(st => ({ randomActorId: st.currentPlaceholderId++ }))
+        }, 1500)
+    }
+
+    componentDidUnmount() {
+        clearInterval(this.timeout)
+    }
+
 
     render() {
         const { onChange, className } = this.props
+        const { randomActorId } = this.state;
+
+        const randomActor = randomActors[randomActorId % randomActors.length] ?? "Ronny Chieng"
 
         const cssStyles = {
             verticalAlign: 'top',
@@ -19,7 +38,7 @@ class SearchBar extends React.Component {
         const searchInput = <Input size="lg"
                                    width={380}
                                    variant="outline"
-                                   placeholder="Tom Hanks"
+                                   placeholder={randomActor}
                                    css={cssStyles}
                                    fontWeight="bold"
                                    minHeight="80px"

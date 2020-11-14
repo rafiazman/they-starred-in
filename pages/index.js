@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.scss'
 import ActorGrid from "../components/ActorGrid/ActorGrid";
 
 const searchActor = name => axios.get(`/api/search/${name}`)
-const searchActorDebounced = AwesomeDebouncePromise(searchActor, 700);
+const searchActorDebounced = AwesomeDebouncePromise(searchActor, 700)
 
 class Home extends React.Component {
     constructor(props) {
@@ -41,6 +41,7 @@ class Home extends React.Component {
 
     render() {
         const { isFilled, isLoading, queryResponse, query } = this.state;
+
         const circularProgressCss = {
             position: 'fixed',
             top: '50%',
@@ -57,7 +58,7 @@ class Home extends React.Component {
 
                 <main className={styles.main}>
                     <SearchBar className={`${isFilled ? styles.searchBarTop : styles.searchBar}`}
-                               onChange={e => this.onChangeSearchBar(e)}></SearchBar>
+                               onChange={e => this.onChangeSearchBar(e)} />
 
                     { isLoading && <Delayer delay={1000}>
                         <CircularProgress isIndeterminate color="green.300" css={circularProgressCss} />
