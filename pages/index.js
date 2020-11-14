@@ -1,7 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.scss'
+
+import Delayer from "../components/Delayer/Delayer"
 import SearchBar from "../components/SearchBar/SearchBar"
+import { CircularProgress } from "@chakra-ui/react"
+
+import styles from '../styles/Home.module.scss'
 
 class Home extends React.Component {
     constructor(props) {
@@ -9,16 +13,27 @@ class Home extends React.Component {
         this.state = {
             query: "",
             isFilled: false,
+            loading: false,
         }
     }
 
     onChangeSearchBar(e) {
         const val = e.target.value
-        this.setState({ query: val, isFilled: true })
+        this.setState({
+            query: val,
+            isFilled: true,
+            isLoading: true,
+        })
     }
 
     render() {
-        const { isFilled } = this.state;
+        const { isFilled, isLoading } = this.state;
+        const circularProgressCss = {
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+        };
 
         return (
             <div className={styles.container}>
@@ -29,7 +44,13 @@ class Home extends React.Component {
 
                 <main className={styles.main}>
                     <SearchBar className={`${isFilled ? styles.searchBarTop : styles.searchBar}`}
-                               onChange={e => this.onChangeSearchBar(e)} />
+                               onChange={e => this.onChangeSearchBar(e)}></SearchBar>
+
+                    { isLoading && <Delayer delay={1000}>
+                        <CircularProgress isIndeterminate color="green.300" css={circularProgressCss} />
+                    </Delayer> }
+
+
                 </main>
 
                 <footer className={styles.footer}>
