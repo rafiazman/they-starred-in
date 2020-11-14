@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import { API_HOSTNAME_SEARCH_PERSON } from "../constants"
 import AwesomeDebouncePromise from 'awesome-debounce-promise'
 import axios from 'axios'
 

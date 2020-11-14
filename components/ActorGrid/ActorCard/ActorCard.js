@@ -1,8 +1,8 @@
 import React from 'react'
+import axios from 'axios'
 
 import { Box } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react"
-import { Stack, HStack, VStack } from "@chakra-ui/react"
 import {
     Accordion,
     AccordionItem,
@@ -16,11 +16,20 @@ import MovieCard from "./MovieCard/MovieCard"
 class ActorCard extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            movies: [],
+        }
+    }
+
+    componentDidMount() {
+        const { actor } = this.props
+        axios.get(`/api/actor/${actor.id}`)
+            .then(({ data }) => this.setState({ movies: data }))
     }
 
     render() {
         const { actor } = this.props
-        const movies = actor.known_for
+        const { movies } = this.state
 
         if (movies.length === 0) return null
 

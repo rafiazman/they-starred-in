@@ -1,8 +1,6 @@
 import React from 'react'
 
 import ActorCard from "./ActorCard/ActorCard";
-import { SimpleGrid } from "@chakra-ui/react"
-import { Stack, HStack, VStack } from "@chakra-ui/react"
 import {
     Accordion,
     AccordionItem,
