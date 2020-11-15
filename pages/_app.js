@@ -2,7 +2,7 @@ import React from 'react'
 import {ChakraProvider} from "@chakra-ui/react"
 import Head from 'next/head'
 
-import '../styles/globals.scss'
+import './globals.scss'
 
 function MyApp({Component, pageProps}) {
   return (

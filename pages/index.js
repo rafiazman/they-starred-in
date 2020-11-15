@@ -7,7 +7,7 @@ import Delayer from "../components/Delayer/Delayer"
 import SearchBar from "../components/SearchBar/SearchBar"
 
 import {CircularProgress, Container} from "@chakra-ui/react"
-import styles from '../styles/index.module.scss'
+import styles from './index.module.scss'
 import ActorGrid from "../components/ActorGrid/ActorGrid";
 
 const searchActor = name => axios.get(`/api/search/${name}`)
