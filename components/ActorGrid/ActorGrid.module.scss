@@ -1,10 +1,19 @@
 @import "globals";
 
 .centre {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 300px;
+  color: #929292;
+
+  @include media(">=phone", "<=tablet") {
+    margin-top: 50%;
+  }
+  @include media(">=tablet") {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .accordion {
