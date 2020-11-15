@@ -26,13 +26,8 @@ class ActorGrid extends React.Component {
       )
     }
 
-    const cssProps = {
-      width: '100%',
-      padding: '60px 100px',
-    }
-
     return (
-      <Accordion allowToggle defaultIndex={0} css={cssProps}>
+      <Accordion allowToggle defaultIndex={0} className={styles.accordion}>
         {actors.map(actor => <ActorCard key={actor.id} actor={actor}/>)}
       </Accordion>
     )
