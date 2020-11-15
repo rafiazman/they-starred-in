@@ -13,10 +13,6 @@ class MovieCard extends React.Component {
         const { poster_path, release_date, original_title } = movie
 
         const posterImage = `https://image.tmdb.org/t/p/w300${poster_path}`
-
-        // const name = media_type === 'tv' ? movie.name : movie.title
-        // const year = media_type === 'tv' ? first_air_date.substring(0,4) : release_date.substring(0, 4)
-
         const name = original_title
         const year = release_date ? `(${release_date.substring(0, 4)})` : ''
 
