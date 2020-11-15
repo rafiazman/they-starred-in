@@ -52,7 +52,7 @@ class SearchBar extends React.Component {
                                css={cssStyles}
                                fontWeight="bold"
                                minHeight="80px"
-                               fontSize="0.5em"
+                               fontSize="2rem"
                                onChange={e => this.handleOnChange(e)}
                                ml={2}
                                mr={2}
