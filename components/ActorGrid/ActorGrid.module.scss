@@ -1,3 +1,5 @@
+@import "globals";
+
 .centre {
   position: fixed;
   top: 50%;
@@ -7,5 +9,11 @@
 
 .accordion {
   width: 100%;
-  padding: 60px 100px;
+
+  @include media(">=phone", "<=tablet") {
+    padding: 40px 0 !important;
+  }
+  @include media(">=tablet") {
+    padding: 60px 100px;
+  }
 }
