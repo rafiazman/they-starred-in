@@ -34,17 +34,23 @@ class SearchBar extends React.Component {
     onChange(e)
   }
 
+  handleOnKeyPress(e) {
+    const { key } = e
+    if (key === 'Enter') e.target.blur()
+  }
+
   render() {
     const {className} = this.props
     const {randomActorId, moveUp} = this.state
 
-    const randomActor = randomActors[randomActorId % randomActors.length] ?? "Ronny Chieng"
+    const randomActor = randomActors[randomActorId % randomActors.length]
 
     const searchInput = <Input size="lg"
                                variant="outline"
                                className={styles.searchBox}
                                placeholder={randomActor}
                                onChange={e => this.handleOnChange(e)}
+                               onKeyPress={e => this.handleOnKeyPress(e)}
                                textAlign="center"/>
 
     return (

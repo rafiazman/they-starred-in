@@ -19,8 +19,10 @@ class MovieCard extends React.Component {
     const year = release_date ? `(${release_date.substring(0, 4)})` : ''
 
     return (
-      <a href={`https://www.themoviedb.org/movie/${movie.id}`} className={className}>
-        <Image src={poster_path ? posterImage : "/missing-poster.png"} width={300} height={450} />
+      <a href={`https://www.themoviedb.org/movie/${movie.id}`} className={`${styles.card} ${className}`}>
+        <Image src={poster_path ? posterImage : "/missing-poster.png"}
+               width={300}
+               height={450} />
         <Heading size="md" className={styles.title}>{name} {year}</Heading>
       </a>
     )

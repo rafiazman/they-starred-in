@@ -43,7 +43,7 @@ class ActorCard extends React.Component {
                 </AccordionButton>
 
                 <AccordionPanel mb={4}>
-                    <SimpleGrid columns={5} spacing={4} css={{ marginTop: '20px'}}>
+                    <SimpleGrid columns={[3, 4, 5]} spacing={4} css={{ marginTop: '20px'}}>
                         { movies.map(movie => <MovieCard key={movie.id} movie={movie} />) }
                     </SimpleGrid>
                 </AccordionPanel>

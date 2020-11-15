@@ -1,5 +1,21 @@
+@import "globals";
+
+.card {
+  @include media(">=phone", "<=tablet") {
+    width: 110px;
+  }
+  @include media(">=tablet") {
+    margin-bottom: 20px;
+  }
+}
+
 .title {
   overflow: hidden;
   whitespace: nowrap;
   text-overflow: ellipsis;
+
+  @include media(">=phone", "<=tablet") {
+    font-size: 1rem !important;
+    line-height: 1.4rem !important;
+  }
 }
