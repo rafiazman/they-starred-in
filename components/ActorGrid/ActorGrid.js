@@ -7,7 +7,10 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  Heading
 } from "@chakra-ui/react"
+
+import styles from './ActorGrid.module.scss'
 
 class ActorGrid extends React.Component {
   constructor(props) {
@@ -17,7 +20,11 @@ class ActorGrid extends React.Component {
   render() {
     const {actors} = this.props
 
-    if (!actors) return null
+    if (!actors || actors.length == 0) {
+      return (
+        <Heading className={styles.centre} size="md">No results for this person</Heading>
+      )
+    }
 
     const cssProps = {
       width: '100%',

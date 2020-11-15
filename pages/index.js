@@ -62,7 +62,7 @@ class Home extends React.Component {
             <CircularProgress isIndeterminate color="green.300" css={circularProgressCss}/>
           </Delayer>}
 
-          {!isLoading && <ActorGrid actors={queryResponse && isFilled ? queryResponse.results : null}/>}
+          {!isLoading && isFilled && <ActorGrid actors={queryResponse ? queryResponse.results : null}/>}
         </main>
 
         <footer className={styles.footer}>
