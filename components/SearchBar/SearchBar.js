@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
 
     this.state = {
       randomActorId: 0,
-      isTouched: false,
+      moveUp: false,
     }
   }
 
@@ -26,7 +26,9 @@ class SearchBar extends React.Component {
   }
 
   handleOnChange(e) {
-    this.setState({ isTouched: true })
+    const { target: { value } } = e
+
+    this.setState({ moveUp: Boolean(value) })
 
     const {onChange} = this.props
     onChange(e)
@@ -34,7 +36,7 @@ class SearchBar extends React.Component {
 
   render() {
     const {className} = this.props
-    const {randomActorId, isTouched} = this.state
+    const {randomActorId, moveUp} = this.state
 
     const randomActor = randomActors[randomActorId % randomActors.length] ?? "Ronny Chieng"
 
@@ -56,7 +58,7 @@ class SearchBar extends React.Component {
                                textAlign="center"/>
 
     return (
-      <h1 className={`${styles.title} ${isTouched ? styles.top : styles.centre} ${className ? className : ""}`}>
+      <h1 className={`${styles.title} ${moveUp ? styles.top : styles.centre} ${className ? className : ""}`}>
         Which movie did {searchInput} star in?
       </h1>
     )

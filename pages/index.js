@@ -29,7 +29,7 @@ class Home extends React.Component {
     const val = e.target.value
     this.setState({
       query: val,
-      isFilled: true
+      isFilled: Boolean(val)
     })
 
     if (val) {
@@ -62,7 +62,7 @@ class Home extends React.Component {
             <CircularProgress isIndeterminate color="green.300" css={circularProgressCss}/>
           </Delayer>}
 
-          {!isLoading && <ActorGrid actors={queryResponse ? queryResponse.results : null}/>}
+          {!isLoading && <ActorGrid actors={queryResponse && isFilled ? queryResponse.results : null}/>}
         </main>
 
         <footer className={styles.footer}>
