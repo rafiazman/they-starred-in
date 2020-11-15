@@ -8,19 +8,16 @@ async function handler(req, res) {
 
   const {API_KEY} = process.env
   const url = `${API_HOSTNAME_PEOPLE}/${actor}/movie_credits?api_key=${API_KEY}`
-  const {data} = await axios.get(url)
+  const {data: { cast: movies }} = await axios.get(url)
 
-  const sortedData = data.cast.sort( (movieA, movieB) => {
-    const releaseDateA = movieA.release_date
-    const releaseDateB = movieB.release_date
+  movies.sort( ({ release_date: releaseDateA }, { release_date: releaseDateB }) => {
+    const releaseDateNumberA = releaseDateA ? Number(releaseDateA.replace(/-/g, "")) : -1
+    const releaseDateNumberB = releaseDateB ? Number(releaseDateB.replace(/-/g, "")) : -1
 
-    const releaseYearA = releaseDateA ? Number(releaseDateA.substring(0, 4)) : -1
-    const releaseYearB = releaseDateB ? Number(releaseDateB.substring(0, 4)) : -1
-
-    return releaseYearB - releaseYearA
+    return releaseDateNumberB - releaseDateNumberA
   })
 
-  res.json(sortedData)
+  res.json(movies)
 }
 
 export default handler
