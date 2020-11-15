@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Input, Heading} from "@chakra-ui/react"
+import {Input, Heading, Box} from "@chakra-ui/react"
 
 import styles from './SearchBar.module.scss'
 import randomActors from './random-actors.json'
@@ -40,28 +40,17 @@ class SearchBar extends React.Component {
 
     const randomActor = randomActors[randomActorId % randomActors.length] ?? "Ronny Chieng"
 
-    const cssStyles = {
-      verticalAlign: 'middle',
-      marginBottom: '10px',
-    }
-
     const searchInput = <Input size="lg"
-                               width={380}
                                variant="outline"
+                               className={styles.searchBox}
                                placeholder={randomActor}
-                               css={cssStyles}
-                               fontWeight="bold"
-                               minHeight="80px"
-                               fontSize="2rem"
                                onChange={e => this.handleOnChange(e)}
-                               ml={2}
-                               mr={2}
                                textAlign="center"/>
 
     return (
-      <Heading size="2xl" className={`${moveUp ? styles.top : styles.centre} ${className ? className : ""}`}>
+      <h2 className={`${moveUp ? styles.top : styles.centre} ${className ? className : ""} ${styles.heading}`}>
         Which movie did {searchInput} star in?
-      </Heading>
+      </h2>
     )
   }
 }
