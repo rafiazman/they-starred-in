@@ -1,8 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import {Heading} from "@chakra-ui/react"
+
+import styles from './MovieCard.module.scss'
 
 class MovieCard extends React.Component {
   constructor(props) {
@@ -17,18 +18,10 @@ class MovieCard extends React.Component {
     const name = original_title
     const year = release_date ? `(${release_date.substring(0, 4)})` : ''
 
-    const headingCss = {
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-    }
-
     return (
-      <a href={`https://www.themoviedb.org/movie/${movie.id}`} className={className} style={{width: '300px'}}>
-        {poster_path ? <Image src={posterImage} width={300} height={450}></Image> :
-          <Image src="/missing-poster.png" width={300} height={450}></Image>}
-
-        <Heading size="md" css={headingCss}>{name} {year}</Heading>
+      <a href={`https://www.themoviedb.org/movie/${movie.id}`} className={className}>
+        <Image src={poster_path ? posterImage : "/missing-poster.png"} width={300} height={450} />
+        <Heading size="md" className={styles.title}>{name} {year}</Heading>
       </a>
     )
   }
