@@ -13,6 +13,10 @@
 
 .top {
   padding-top: 40px;
+}
+
+.topAnimated {
+  padding-top: 40px;
   animation-name: goToTop;
   animation-duration: 1s;
 }
