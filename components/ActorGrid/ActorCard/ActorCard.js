@@ -27,12 +27,21 @@ class ActorCard extends React.Component {
             .then(({ data }) => this.setState({ movies: data }))
     }
 
+
     render() {
         const { actor } = this.props
         const { movies } = this.state
 
-        if (movies.length === 0) return null
 
+        movies.sort((a,b) => {
+            if(a.release_date && b.release_date){
+              return b.release_date.substring(0,4) - a.release_date.substring(0,4)
+            }else{
+              if(!a.release_date){return 1}
+              else{return -1}
+            }})
+
+        if (movies.length === 0) return null;
         return (
             <AccordionItem>
                 <AccordionButton>
