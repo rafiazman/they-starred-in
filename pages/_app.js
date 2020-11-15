@@ -15,7 +15,7 @@ function MyApp({Component, pageProps}) {
         <meta property="og:title" content="They Starred In" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://theystarred.in" />
-        <meta property="og:image:secure_url" itemProp="image" content="https://theystarred.in/og-screenshot.png" />
+        <meta property="og:image:secure_url" itemProp="image" content="https://theystarred.in/og-screenshot.jpg" />
         <meta property="og:description" content="Curious to find more movies where an actor or actress has starred in? This is just the tool for you!" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
