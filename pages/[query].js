@@ -8,7 +8,7 @@ import Delayer from "../components/Delayer/Delayer"
 import SearchBar from "../components/SearchBar/SearchBar"
 
 import {CircularProgress, Container} from "@chakra-ui/react"
-import styles from './index.module.scss'
+import styles from './[query].module.scss'
 import ActorGrid from "../components/ActorGrid/ActorGrid";
 import {API_HOSTNAME_SEARCH_PERSON} from "../constants";
 
