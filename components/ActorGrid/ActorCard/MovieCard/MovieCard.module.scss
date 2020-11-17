@@ -1,5 +1,3 @@
-@import "globals";
-
 .card {
   @include media(">=phone", "<=tablet") {
     width: 110px;

@@ -82,7 +82,7 @@ class Home extends React.Component {
           <SearchBar onChange={e => this.onChangeSearchBar(e)} value={query ? query : ""} />
 
           {isLoading && <Delayer delay={1000}>
-            <CircularProgress isIndeterminate color="green.300" css={circularProgressCss}/>
+            <CircularProgress isIndeterminate color="green.300" className={styles.progressCircle} />
           </Delayer>}
 
           {!isLoading && isFilled && <ActorGrid actors={queryResponse ? queryResponse.results : null}/>}

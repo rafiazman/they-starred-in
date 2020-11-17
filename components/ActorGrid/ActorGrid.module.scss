@@ -1,12 +1,10 @@
-@import "globals";
-
 .centre {
   text-align: center;
   width: 300px;
   color: #929292;
 
   @include media(">=phone", "<=tablet") {
-    margin-top: 50%;
+    margin-top: 150px;
   }
   @include media(">=tablet") {
     position: fixed;
