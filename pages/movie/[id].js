@@ -69,7 +69,7 @@ class MovieDetail extends React.Component {
                 templateRows="repeat(2, 0.1fr)"
                 templateColumns="repeat(2, 2fr)">
 
-            <GridItem rowSpan={2}>
+            <GridItem rowSpan={{ sm: 1, md: 2}}>
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster_path}`}
                    alt={title}
                    className={`${styles.posterImage}`} />
@@ -88,7 +88,7 @@ class MovieDetail extends React.Component {
               </div>
             </GridItem>
 
-            <GridItem colStart={2} className={`${styles.movieInformation}`}>
+            <GridItem colStart={{ sm: 1, md: 2 }} colSpan={[2, null, 1]}  className={`${styles.movieInformation}`}>
               <div className={styles.overview}>
                 <Heading size="xl">Overview</Heading>
                 <p>{ overview }</p>

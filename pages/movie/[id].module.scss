@@ -21,11 +21,19 @@
 .posterImage {
   max-height: 80vh;
   margin: 0 auto;
+
+  @include media(">=phone", "<=tablet") {
+    margin-left: 20px;
+  }
 }
 
 .movieInformation {
   min-width: 65vw;
   padding-right: 8vw;
+
+  @include media(">=phone", "<=tablet") {
+    padding-left: 20px;
+  }
 
   .heading {
     margin-bottom: 15px;
@@ -34,6 +42,7 @@
   .metadata {
     display: flex;
     margin-bottom: 25px;
+    flex-wrap: wrap;
 
     * {
       margin-right: 20px;
