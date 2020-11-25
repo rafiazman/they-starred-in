@@ -1,5 +1,8 @@
 import React from 'react'
 import { withRouter } from 'next/router'
+import parse from 'date-fns/parse'
+import format from 'date-fns/format'
+import formatDuration from 'date-fns/formatDuration'
 
 import { Heading, Tag } from '@chakra-ui/react'
 import { Grid, GridItem } from "@chakra-ui/react"
@@ -7,13 +10,51 @@ import { CloseIcon } from '@chakra-ui/icons'
 
 import styles from './[id].module.scss'
 
+import axios from 'axios'
+import {API_HOSTNAME_MOVIES_GET_DETAILS} from "../../constants";
+
+export async function getServerSideProps(context) {
+  const { id } = context.query
+  const { API_KEY } = process.env
+  const { data } = await axios.get(`${API_HOSTNAME_MOVIES_GET_DETAILS}/${id}?append_to_response=release_dates&api_key=${API_KEY}`)
+
+  return {
+    props: {
+      data
+    },
+  }
+}
+
 class MovieDetail extends React.Component {
   constructor(props) {
     super(props)
   }
 
+  getFilmRating(results) {
+    const release = results.find( ({ iso_3166_1 }) => {
+        switch (iso_3166_1) {
+          case "NZ":
+            return true
+          case "US":
+            return true
+        }
+        return false
+      })
+
+    const { release_dates } = release
+
+    return release_dates[0].certification
+  }
+
   render() {
-    const { router } = this.props
+    const { getFilmRating } = this
+    const { router, data } = this.props
+    const { title, overview, genres, poster_path, release_date, release_dates: { results }, runtime } = data
+
+    const runtime_formatted = { hours: Math.floor(runtime / 60), minutes: runtime % 60 }
+    const release_date_formatted = parse(release_date, "yyyy-mm-dd", new Date())
+
+    const film_rating = getFilmRating(results)
 
     return (
       <div>
@@ -29,26 +70,28 @@ class MovieDetail extends React.Component {
                 templateColumns="repeat(2, 2fr)">
 
             <GridItem rowSpan={2}>
-              <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/kjMbDciooTbJPofVXgAoFjfX8Of.jpg"
-                   alt="Poster"
+              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster_path}`}
+                   alt={title}
                    className={`${styles.posterImage}`} />
             </GridItem>
 
             <GridItem className={`${styles.movieInformation}`}>
-              <Heading size="2xl" className={styles.heading}>Greyhound (2020)</Heading>
+              <Heading size="2xl" className={styles.heading}>{ title } ({ release_date_formatted.getFullYear() })</Heading>
 
               <div className={styles.metadata}>
-                <Tag className={`${styles.rating}`}>PG-13</Tag>
-                <span className={`${styles.releaseDate}`}>07/10/2020 (PT)</span>
-                <span className={`${styles.genres}`}>War, Action, Drama</span>
-                <span className={`${styles.runtime}`}>1h 31m</span>
+                { film_rating && <Tag className={`${styles.rating}`}>{ film_rating }</Tag> }
+                <span className={`${styles.releaseDate}`}>{ format(release_date_formatted, 'dd/mm/yyyy') }</span>
+                <span className={`${styles.genres}`}>{ genres.map(x => x.name).join(', ') }</span>
+                <span className={`${styles.runtime}`}>
+                  { runtime_formatted.hours }h { runtime_formatted.minutes }m
+                </span>
               </div>
             </GridItem>
 
             <GridItem colStart={2} className={`${styles.movieInformation}`}>
               <div className={styles.overview}>
                 <Heading size="xl">Overview</Heading>
-                <p>A first-time captain leads a convoy of allied ships carrying thousands of soldiers across the treacherous waters of the “Black Pit” to the front lines of WW2. With no air cover protection for 5 days, the captain and his convoy must battle the surrounding enemy Nazi U-boats in order to give the allies a chance to win the war.</p>
+                <p>{ overview }</p>
               </div>
             </GridItem>
 
