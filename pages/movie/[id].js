@@ -59,6 +59,7 @@ class MovieDetail extends React.Component {
     const release_date_formatted = parse(release_date, "yyyy-mm-dd", new Date())
 
     const film_rating = getFilmRating(results)
+    const poster_image = poster_path ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster_path}` : '/missing-poster.png'
 
     return (
       <div>
@@ -74,7 +75,7 @@ class MovieDetail extends React.Component {
                 templateColumns="repeat(2, 2fr)">
 
             <GridItem rowSpan={{ sm: 1, md: 2}}>
-              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster_path}`}
+              <img src={poster_image}
                    alt={title}
                    className={`${styles.posterImage}`} />
             </GridItem>
