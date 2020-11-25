@@ -65,13 +65,6 @@ class Home extends React.Component {
   render() {
     const {isFilled, isLoading, queryResponse, query} = this.state;
 
-    const circularProgressCss = {
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    };
-
     return (
       <div className={styles.container}>
         <Head>
