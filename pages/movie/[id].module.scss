@@ -23,6 +23,7 @@
   margin: 0 auto;
 
   @include media(">=phone", "<=tablet") {
+    margin-top: 5px;
     margin-left: 20px;
   }
 }
@@ -60,6 +61,12 @@
 
     p {
       text-align: justify;
+    }
+  }
+
+  .actions {
+    h2 {
+      margin-bottom: 15px;
     }
   }
 }

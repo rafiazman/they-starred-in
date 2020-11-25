@@ -2,11 +2,13 @@ import React from 'react'
 import { withRouter } from 'next/router'
 import parse from 'date-fns/parse'
 import format from 'date-fns/format'
-import formatDuration from 'date-fns/formatDuration'
+import Link from 'next/link'
 
 import { Heading, Tag } from '@chakra-ui/react'
 import { Grid, GridItem } from "@chakra-ui/react"
+import { Button, ButtonGroup } from "@chakra-ui/react"
 import { CloseIcon } from '@chakra-ui/icons'
+import { VStack, HStack } from "@chakra-ui/react"
 
 import styles from './[id].module.scss'
 
@@ -20,7 +22,8 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      data
+      id,
+      data,
     },
   }
 }
@@ -48,8 +51,8 @@ class MovieDetail extends React.Component {
 
   render() {
     const { getFilmRating } = this
-    const { router, data } = this.props
-    const { title, overview, genres, poster_path, release_date, release_dates: { results }, runtime } = data
+    const { router, id, data } = this.props
+    const { title, overview, genres, poster_path, release_date, release_dates: { results }, runtime, imdb_id } = data
 
     const runtime_formatted = { hours: Math.floor(runtime / 60), minutes: runtime % 60 }
     const release_date_formatted = parse(release_date, "yyyy-mm-dd", new Date())
@@ -89,10 +92,26 @@ class MovieDetail extends React.Component {
             </GridItem>
 
             <GridItem colStart={{ sm: 1, md: 2 }} colSpan={[2, null, 1]}  className={`${styles.movieInformation}`}>
-              <div className={styles.overview}>
-                <Heading size="xl">Overview</Heading>
-                <p>{ overview }</p>
-              </div>
+              <VStack spacing={6} align="left">
+                <div className={styles.overview}>
+                  <Heading size="xl">Overview</Heading>
+                  <p>{ overview }</p>
+                </div>
+
+                <div className={styles.actions}>
+                  <Heading size="lg">Details</Heading>
+
+                  <HStack spacing={2} align="left">
+                    <Link href={`https://www.imdb.com/title/${imdb_id}`}>
+                      <a><Button colorScheme="yellow">IMDb</Button></a>
+                    </Link>
+
+                    <Link href={`https://www.themoviedb.org/movie/${id}`}>
+                      <a><Button colorScheme="blue">TMDB</Button></a>
+                    </Link>
+                  </HStack>
+                </div>
+              </VStack>
             </GridItem>
 
           </Grid>
