@@ -44,8 +44,9 @@ class MovieDetail extends React.Component {
         return false
       })
 
-    const { release_dates } = release
+    if (!release) return null;
 
+    const { release_dates } = release
     return release_dates[0].certification
   }
 
